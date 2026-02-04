@@ -1,8 +1,0 @@
-{
-  "name": "Rubi Agency CRM",
-  "description": "A high-performance, clean CRM for Rubi Agency featuring lead pipeline, client management, task tracking, staff and freelancer directories, and file storage using Firebase.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
-}
