@@ -1,0 +1,23 @@
+{
+  "name": "rubi-agency-crm",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "firebase": "^11.0.0",
+    "lucide-react": "^0.460.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.1"
+  }
+}
