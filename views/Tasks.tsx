@@ -736,20 +736,20 @@ const Tasks: React.FC = () => {
               </div>
             </ToolbarItem>
             <ToolbarItem label="Sort order">
-              <div className="relative w-full">
-                <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
-                <Select value={sortOption} onChange={(e) => setSortOption(e.target.value as SortOption)} className="pl-10 h-[46px] !py-0">
-                  <option value="dueDateSoonest">Due date (soonest first)</option>
-                  <option value="dueDateLatest">Due date (latest first)</option>
-                  <option value="dateLoggedNewest">Logged (newest first)</option>
-                  <option value="dateLoggedOldest">Logged (oldest first)</option>
-                  <option value="status">Status (logical flow)</option>
-                  <option value="who">Who (assignee)</option>
-                  <option value="area">Area</option>
-                  <option value="hours">Hours allocated (highest)</option>
-                </Select>
-              </div>
-            </ToolbarItem>
+  <Select
+    value={sortOption}
+    onChange={(e) => setSortOption(e.target.value as SortOption)}
+  >
+    <option value="dueDateSoonest">Due date (soonest first)</option>
+    <option value="dueDateLatest">Due date (latest first)</option>
+    <option value="dateLoggedNewest">Logged (newest first)</option>
+    <option value="dateLoggedOldest">Logged (oldest first)</option>
+    <option value="status">Status (logical flow)</option>
+    <option value="who">Who (assignee)</option>
+    <option value="area">Area</option>
+    <option value="hours">Hours allocated (highest)</option>
+  </Select>
+</ToolbarItem>
           </>
         )}
       </div>
