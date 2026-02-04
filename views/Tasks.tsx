@@ -69,7 +69,7 @@ return (
     <div className="flex-none min-h-0">
       <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
         <ToolbarItem label="Client selection">
-          <Select
+          </Select>
             value={selectedClientId}
             onChange={(e) => setSelectedClientId(e.target.value)}
           >
@@ -110,7 +110,7 @@ return (
             </ToolbarItem>
 
             <ToolbarItem label="Sort order">
-  <Select
+  </Select>
     value={sortOption}
     onChange={(e) => setSortOption(e.target.value as SortOption)}
   >
