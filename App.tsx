@@ -27,7 +27,7 @@ const AppContent: React.FC = () => {
   useEffect(() => {
     const unsubAuth = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
-      
+
       // If no user is detected, immediately clear profile and stop initialization
       if (!firebaseUser) {
         setProfile(null);
@@ -41,15 +41,19 @@ const AppContent: React.FC = () => {
   // Profile Listener - only active when a user is logged in
   useEffect(() => {
     if (user) {
-      const unsubProfile = onSnapshot(doc(db, 'users', user.uid), (snap) => {
-        if (snap.exists()) {
-          setProfile(snap.data() as UserProfile);
+      const unsubProfile = onSnapshot(
+        doc(db, 'users', user.uid),
+        (snap) => {
+          if (snap.exists()) {
+            setProfile(snap.data() as UserProfile);
+          }
+          setInitializing(false);
+        },
+        (err) => {
+          console.error('Profile fetch error:', err);
+          setInitializing(false);
         }
-        setInitializing(false);
-      }, (err) => {
-        console.error("Profile fetch error:", err);
-        setInitializing(false);
-      });
+      );
       return unsubProfile;
     }
   }, [user]);
@@ -62,15 +66,24 @@ const AppContent: React.FC = () => {
 
   const renderView = () => {
     switch (activeTab) {
-      case 'dashboard': return <Dashboard />;
-      case 'pipeline': return <Pipeline />;
-      case 'closed-deals': return <ClosedDeals />;
-      case 'clients': return <Clients />;
-      case 'tasks': return <Tasks />;
-      case 'staff': return <Staff />;
-      case 'freelancers': return <Freelancers />;
-      case 'files': return <Files />;
-      default: return <Dashboard />;
+      case 'dashboard':
+        return <Dashboard />;
+      case 'pipeline':
+        return <Pipeline />;
+      case 'closed-deals':
+        return <ClosedDeals />;
+      case 'clients':
+        return <Clients />;
+      case 'tasks':
+        return <Tasks />;
+      case 'staff':
+        return <Staff />;
+      case 'freelancers':
+        return <Freelancers />;
+      case 'files':
+        return <Files />;
+      default:
+        return <Dashboard />;
     }
   };
 
@@ -78,7 +91,9 @@ const AppContent: React.FC = () => {
     return (
       <div className="min-h-screen bg-white dark:bg-dark-bg flex flex-col items-center justify-center">
         <Zap className="w-12 h-12 text-brand-pink animate-pulse mb-4" />
-        <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Authenticating Rubi Identity...</p>
+        <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+          Authenticating Rubi Identity...
+        </p>
       </div>
     );
   }
@@ -89,28 +104,28 @@ const AppContent: React.FC = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#F9FAFB] dark:bg-dark-bg transition-colors">
-      <Sidebar 
-        activeTab={activeTab} 
-        setActiveTab={handleTabChange} 
+    <div className="flex h-screen overflow-hidden bg-[#F9FAFB] dark:bg-dark-bg transition-colors">
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={handleTabChange}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         profile={profile}
       />
 
       {isSidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 z-[40] lg:hidden backdrop-blur-sm transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
-      
-      <div className="flex-1 flex flex-col min-h-screen overflow-hidden">
+
+      <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
         <header className="lg:hidden h-16 flex items-center justify-between px-4 bg-white dark:bg-dark-card border-b border-gray-100 dark:border-dark-border sticky top-0 z-[30]">
           <div className="flex items-center gap-2">
             <h1 className="text-xl font-extrabold text-brand-pink tracking-tight">RUBI</h1>
           </div>
-          <button 
+          <button
             onClick={() => setIsSidebarOpen(true)}
             className="p-2 text-gray-500 hover:text-brand-pink transition-colors"
           >
@@ -118,7 +133,7 @@ const AppContent: React.FC = () => {
           </button>
         </header>
 
-        <main className="flex-1 overflow-y-auto overflow-x-hidden">
+        <main className="flex-1 min-h-0 overflow-auto">
           <div className="max-w-[1600px] mx-auto">
             {renderView()}
           </div>
