@@ -110,30 +110,20 @@ return (
             </ToolbarItem>
 
             <ToolbarItem label="Sort order">
-              <Select
-                value={sortOption}
-                onChange={(e) =>
-                  setSortOption(e.target.value as SortOption)
-                }
-              >
-                <option value="dueDateSoonest">
-                  Due date (soonest first)
-                </option>
-                <option value="dueDateLatest">
-                  Due date (latest first)
-                </option>
-                <option value="dateLoggedNewest">
-                  Logged (newest first)
-                </option>
-                <option value="dateLoggedOldest">
-                  Logged (oldest first)
-                </option>
-                <option value="status">Status</option>
-                <option value="who">Who</option>
-                <option value="area">Area</option>
-                <option value="hours">Hours allocated</option>
-              </Select>
-            </ToolbarItem>
+  <Select
+    value={sortOption}
+    onChange={(e) => setSortOption(e.target.value as SortOption)}
+  >
+    <option value="dueDateSoonest">Due date (soonest)</option>
+    <option value="dueDateLatest">Due date (latest)</option>
+    <option value="dateLoggedNewest">Logged (newest)</option>
+    <option value="dateLoggedOldest">Logged (oldest)</option>
+    <option value="status">Status</option>
+    <option value="who">Who</option>
+    <option value="area">Area</option>
+    <option value="hours">Hours</option>
+  </Select>
+</ToolbarItem>
           </>
         )}
       </div>
